@@ -71,5 +71,6 @@ public class HomePageController
     public String deniedAccess(Model model)
     {
         model.addAttribute("message", "Access denied :(");
+        return "redirection";
     }
 }
