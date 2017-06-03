@@ -22,9 +22,12 @@ public class Car
     private int year;
 
     @Column
-    private boolean enabled;
+    private double price;
 
     @Column
+    private boolean enabled;
+
+    @Column(name = "returning_date")
     private Date returningDate;
 
     public Integer getId()
@@ -85,5 +88,15 @@ public class Car
     public void setReturningDate(Date returningDate)
     {
         this.returningDate = returningDate;
+    }
+
+    public double getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
     }
 }

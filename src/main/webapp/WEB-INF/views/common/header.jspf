@@ -17,7 +17,7 @@
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div style="padding-left: 15px; padding-right: 15px;">
+    <div style="padding-left: 15px; padding-right: 50px;">
         <div class="navbar-header">
             <a class="navbar-brand">Car rental store</a>
         </div>
