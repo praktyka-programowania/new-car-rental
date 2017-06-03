@@ -8,7 +8,7 @@
 <div class="container">
     <c:forEach var="car" items="${list}">
 
-        <div class="row" style="height: 150px; margin-top: 5px; background-color: #e9eedb;">
+        <div class="row" style="height: 150px; margin-top: 5px; background-color: rgba(30,235,204,0.25);">
             <div class="col-md-2" style="padding-left: 0px;">
                 <img src="/resources/cars/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="150" height="150"/>
             </div>

@@ -42,7 +42,6 @@ public class CarController
             model.addAttribute("message", "There is no available car for you :(");
             return "redirection";
         }
-
         model.addAttribute("car", car);
         return "carView";
     }

@@ -1,6 +1,11 @@
 package model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
@@ -13,15 +18,21 @@ public class Car
     private Integer id;
 
     @Column
+    @NotBlank
+    @Length(min = 3, max = 30)
     private String company;
 
     @Column
+    @Length(min = 3, max = 30)
     private String model;
 
     @Column
+    @Min(1995)
+    @Max(2017)
     private int year;
 
     @Column
+    @Min(0)
     private double price;
 
     @Column

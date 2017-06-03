@@ -34,6 +34,12 @@ public class CarServiceImpl implements CarService
         return result;
     }
 
+    @Override
+    public List<Car> getAllAdmin()
+    {
+        return carDao.getAll();
+    }
+
     public void add(Car car)
     {
         carDao.add(car);

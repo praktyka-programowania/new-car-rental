@@ -1,29 +1,34 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@include file="/WEB-INF/views/common/header.jspf"%>
+
+<div class="page-header">
+    <h1>Confirm your purchase:</h1>
+</div>
 
 <div class="row">
     <div class="col-md-3">
-        <img src="/resources/books/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.name}" width="250" height="250"/>
+        <img src="/resources/books/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="250" height="250"/>
     </div>
     <div class="col-md-8">
         <ul style="list-style-type: none;">
-            <li> <h3>${book.name}</h3> </li>
-            <li> <h4>${book.autor}</h4> </li>
-            <li> <a href="/books/genres/${book.genre}"><h4>#${book.genre}</h4></a> </li>
-            <li>   <c:choose>
-                <c:when test="${book.desc != null && book.desc.length() > 0}">
-                    <h3>Short description:</h3>
-                    <p><i>${book.desc}</i></p>
-                </c:when>
-                <c:otherwise>
-                    <h3>No book description</h3>
-                </c:otherwise>
-            </c:choose>
-            </li>
-            <li><h3>&#36;${book.price}</h3></li>
-            <li>
-                <a href="#" class="btn btn-warning btn-large"
-                   ng-click="addToCart('${book.id}')">Add to cart</a>
-                <a href="/books/" class="btn btn-default">Go to all books</a>
+            <li> <h2>${car.company}</h2> </li>
+            <li> <h3>${car.model}</h3> </li>
+            <li> <h3>${car.year}</h3> </li>
+            <li><h2>&#36;${car.price}</h2></li>
+            <li class="pull-right">
+                <table>
+                    <tr>
+                        <td>
+                            <form:form action="/cars/buy" method="post">
+                                <input type="hidden" value="${car.id}">
+                                <input class="btn btn-success" type="submit" value="Rent">
+                            </form:form>
+                        </td>
+                        <td>
+                            <a href="/cars/" class="btn btn-default">Go to all cars</a>
+                        </td>
+                    </tr>
+                </table>
             </li>
         </ul>
     </div>

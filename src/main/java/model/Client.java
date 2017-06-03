@@ -2,9 +2,11 @@ package model;
 
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.jboss.logging.annotations.LoggingClass;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "clients")
@@ -16,22 +18,28 @@ public class Client
     private Integer id;
 
     @Column(name = "first_name")
+    @Length(min = 3, max = 30)
     private String firstName;
 
     @Column(name = "last_name")
+    @Length(min = 3, max = 30)
     private String lastName;
 
     @Column
+    @Min(0)
     private int age;
 
     @Column
+    @Length(min = 3, max = 30)
     @Email
     private String email;
 
     @Column
+    @Length(min = 3, max = 30)
     private String username;
 
     @Column
+    @Length(min = 3, max = 50)
     private String password;
 
     @OneToOne
