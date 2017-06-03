@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.CarService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CarServiceImpl implements CarService
@@ -38,6 +37,38 @@ public class CarServiceImpl implements CarService
     public List<Car> getAllAdmin()
     {
         return carDao.getAll();
+    }
+
+    @Override
+    public List<Car> getSortedList()
+    {
+        List<Car> list = carDao.getAll();
+        Collections.sort(list, (a, b) -> a.getCompany().compareTo(b.getCompany()));
+        return list;
+    }
+
+    @Override
+    public List<Car> search(Car car)
+    {
+        List<Car> res = new ArrayList<>();
+        List<Car> list = carDao.getAll();
+        for (Car c : list)
+        {
+            if (car.getCompany().equals(c.getCompany()))
+            {
+                if (car.getModel().isEmpty())
+                {
+                    if (car.getYear() == 0 || car.getYear() == c.getYear())
+                        res.add(c);
+                }
+                else if (car.getModel().equals(c.getModel()))
+                {
+                    if (car.getYear() == 0 || car.getYear() == c.getYear())
+                        res.add(c);
+                }
+            }
+        }
+        return res;
     }
 
     public void add(Car car)
