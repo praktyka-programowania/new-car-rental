@@ -21,6 +21,22 @@ public class ClientDaoImpl implements ClientDao
         return (Client)session.getCurrentSession().get(Client.class, id);
     }
 
+    @Override
+    public Client getByUsername(String username)
+    {
+        return (Client) session.getCurrentSession().createQuery("from model.Client where username = ?")
+                .setParameter(0, username)
+                .uniqueResult();
+    }
+
+    @Override
+    public Client getByEmail(String email)
+    {
+        return (Client) session.getCurrentSession().createQuery("from model.Client where email = ?")
+                .setParameter(0, email)
+                .uniqueResult();
+    }
+
     public List<Client> getAll()
     {
         return session.getCurrentSession().createQuery("from model.Client").list();

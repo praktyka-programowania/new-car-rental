@@ -19,20 +19,20 @@ public class Car
 
     @Column
     @NotBlank
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     private String company;
 
     @Column
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     private String model;
 
     @Column
-    @Min(1995)
-    @Max(2017)
+    @Min(value = 1995, message = "Minimum value is 1995")
+    @Max(value = 2017, message = "Maximum value is 2017")
     private int year;
 
     @Column
-    @Min(0)
+    @Min(value = 0, message = "Minimum value is 0")
     private double price;
 
     @Column
@@ -58,7 +58,11 @@ public class Car
 
     public void setCompany(String company)
     {
-        this.company = company;
+        String str = company.trim();
+        if (!str.isEmpty())
+            this.company = str.substring(0,1).toUpperCase() + str.substring(1);
+        else
+            this.company = "";
     }
 
     public String getModel()
@@ -68,7 +72,11 @@ public class Car
 
     public void setModel(String model)
     {
-        this.model = model;
+        String str = model.trim();
+        if (!str.isEmpty())
+            this.model = str.substring(0,1).toUpperCase() + str.substring(1);
+        else
+            this.model = "";
     }
 
     public int getYear()

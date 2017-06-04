@@ -18,28 +18,28 @@ public class Client
     private Integer id;
 
     @Column(name = "first_name")
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     private String firstName;
 
     @Column(name = "last_name")
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     private String lastName;
 
     @Column
-    @Min(0)
+    @Min(value = 0 ,message = "Minimum value is 0")
     private int age;
 
     @Column
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     @Email
     private String email;
 
     @Column
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 30, message = "Should be between 3 and 30 characters")
     private String username;
 
     @Column
-    @Length(min = 3, max = 50)
+    @Length(min = 3, max = 50, message = "Should be between 3 and 50 characters")
     private String password;
 
     @OneToOne
@@ -78,7 +78,11 @@ public class Client
 
     public void setFirstName(String firstName)
     {
-        this.firstName = firstName;
+        String str = firstName.trim();
+        if (!str.isEmpty())
+            this.firstName = str.substring(0,1).toUpperCase() + str.substring(1);
+        else
+            this.firstName = "";
     }
 
     public String getLastName()
@@ -88,7 +92,11 @@ public class Client
 
     public void setLastName(String lastName)
     {
-        this.lastName = lastName;
+        String str = lastName.trim();
+        if (!str.isEmpty())
+            this.lastName = str.substring(0,1).toUpperCase() + str.substring(1);
+        else
+            this.lastName = "";
     }
 
     public int getAge()

@@ -1,6 +1,7 @@
 package service.impl;
 
 
+import dao.ClientDao;
 import model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,20 +13,32 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService
 {
     @Autowired
-    private ClientService clientService;
+    private ClientDao clientDao;
 
     public Client get(int id)
     {
-        return clientService.get(id);
+        return clientDao.get(id);
+    }
+
+    @Override
+    public Client getByUsername(String username)
+    {
+        return clientDao.getByUsername(username);
+    }
+
+    @Override
+    public Client getByEmail(String email)
+    {
+        return clientDao.getByUsername(email);
     }
 
     public List<Client> getAll()
     {
-        return clientService.getAll();
+        return clientDao.getAll();
     }
 
     public void add(Client client)
     {
-        clientService.add(client);
+        clientDao.add(client);
     }
 }
