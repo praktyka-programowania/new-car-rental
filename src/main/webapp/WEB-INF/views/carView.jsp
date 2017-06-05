@@ -86,7 +86,7 @@
             <li> <h2>${car.company}</h2> </li>
             <li> <h3>${car.model}</h3> </li>
             <li> <h3>${car.year}</h3> </li>
-            <li><h2>&#36;${car.price} / per month (30 days)</h2></li>
+            <li><h2>&#36;${car.price} / per mounth (30 days)</h2></li>
             <h1>Date: </h1>
             <form:form action="/order/${car.id}" method="post">
             <input type="text" required="required" id="datepicker" name="calendar">

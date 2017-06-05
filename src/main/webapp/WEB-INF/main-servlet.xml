@@ -31,6 +31,7 @@
         <security:intercept-url pattern="/books/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
         <security:intercept-url pattern="/cars/{id}" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
         <security:intercept-url pattern="/order/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+        <security:intercept-url pattern="/client" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
         <security:form-login
                 login-processing-url="/j_spring_security_check"
                 login-page="/login"

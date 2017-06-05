@@ -21,7 +21,7 @@
         <th>Model:</th>
         <th>Year:</th>
         <th>Price:</th>
-        <th>Returning date:</th>
+        <th></th>
         <th></th>
         <th></th>
         </thead>
@@ -33,7 +33,7 @@
                 <td>${car.model}</td>
                 <td>${car.year}</td>
                 <td>${car.price}</td>
-                <td>${car.returningDate != null ? car.returningDate : '---'}</td>
+                <td><a class="btn btn-default ${car.enabled == true ? 'disabled' : ''}" href="/admin/enable/${car.id}">Enable</a></td>
                 <td>
                     <a href="/admin/update/${car.id}" class="glyphicon glyphicon-pencil"></a>
                 </td>

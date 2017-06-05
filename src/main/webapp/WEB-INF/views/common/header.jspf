@@ -45,6 +45,7 @@
                         <li class="active"><a href="/login">Login</a></li>
                     </c:when>
                     <c:otherwise>
+                        <li class="${pageContext.request.requestURI eq '/WEB-INF/views/clientCart.jsp' ? 'active' : ''}"><a href="/client">Your orders</a></li>
                         <li class="active"><a href="/logout">Logout</a></li>
                     </c:otherwise>
                 </c:choose>

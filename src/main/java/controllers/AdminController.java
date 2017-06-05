@@ -1,6 +1,7 @@
 package controllers;
 
 import model.Car;
+import model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import service.CarService;
 import service.ClientService;
 import service.OrderService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -113,13 +115,17 @@ public class AdminController
     }
 
     @RequestMapping(value = "/enable/{id}", method = RequestMethod.GET)
-    public String orders(@PathVariable int id)
+    public String orders(@PathVariable int id, HttpServletRequest request)
     {
         Car car = carService.get(id);
+        Client client = clientService.getByUsername(request.getRemoteUser());
 
 
         car.setEnabled(true);
         carService.update(car);
+
+        client.setCar(null);
+        clientService.add(client);
 
         return "redirect:/admin/";
     }
