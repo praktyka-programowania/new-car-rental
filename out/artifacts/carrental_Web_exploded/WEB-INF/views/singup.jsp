@@ -68,7 +68,7 @@
             <errors cssClass="text-danger"/>
         </fieldset>
 
-        <input type="submit" value="Submin" class="btn btn-success">
+        <input type="submit" value="Submit" class="btn btn-success">
     </form:form>
 
 </div>

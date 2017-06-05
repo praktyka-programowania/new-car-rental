@@ -19,7 +19,9 @@
                 <table>
                     <tr>
                         <td>
-                            <form:form action="/cars/buy" method="post">
+                            <form:form action="/order/${car.id}" method="post">
+                                <h1>Date: </h1>
+                                <input type="text" id="datepicker" name="calendar">
                                 <input type="hidden" value="${car.id}">
                                 <input class="btn btn-success" type="submit" value="Rent">
                             </form:form>

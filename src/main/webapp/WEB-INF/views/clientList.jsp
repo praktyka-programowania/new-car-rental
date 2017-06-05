@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/views/common/header.jspf"%>
 
 <div class="page-header">
-    <h1>Admin page:</h1>
+    <h1>Clients:</h1>
 </div>
 <div class="container">
     <table style="float: right;">
@@ -17,29 +17,32 @@
     <table class="table table-striped">
         <thead>
         <th>ID:</th>
-        <th>Company:</th>
-        <th>Model:</th>
-        <th>Year:</th>
-        <th>Price:</th>
-        <th>Returning date:</th>
-        <th></th>
-        <th></th>
+        <th>Name:</th>
+        <th>Surname:</th>
+        <th>Age:</th>
+        <th>Email:</th>
+        <th>Username:</th>
+        <th>Car:</th>
         </thead>
         <tbody>
-        <c:forEach var="car" items="${list}">
-            <tr style="${car.enabled == false ? 'color:#ff0000;' : ''}">
-                <td>${car.id}</td>
-                <td>${car.company}</td>
-                <td>${car.model}</td>
-                <td>${car.year}</td>
-                <td>${car.price}</td>
-                <td>${car.returningDate != null ? car.returningDate : '---'}</td>
-                <td>
-                    <a href="/admin/update/${car.id}" class="glyphicon glyphicon-pencil"></a>
-                </td>
-                <td>
-                    <a href="/admin/delete/${car.id}" class="glyphicon glyphicon-remove"></a>
-                </td>
+        <c:forEach var="client" items="${list}">
+            <tr>
+                <td>${client.id}</td>
+                <td>${client.firstName}</td>
+                <td>${client.lastName}</td>
+                <td>${client.age}</td>
+                <td>${client.email}</td>
+                <td>${client.username}</td>
+                <c:choose>
+                    <c:when test="${client.car == null}">
+                        <td>
+                            ---
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>${client.car.id} ${client.car.company} ${client.car.model}</td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
         </tbody>
