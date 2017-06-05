@@ -18,8 +18,6 @@ public class CarServiceImpl implements CarService
     public Car get(int id)
     {
         Car car = carDao.get(id);
-        if (car == null || car.isEnabled() == false)
-            return null;
         return car;
     }
 
@@ -30,13 +28,18 @@ public class CarServiceImpl implements CarService
         for (Car car : list)
             if (car.isEnabled())
                 result.add(car);
+
+        Collections.reverse(result);
+
         return result;
     }
 
     @Override
     public List<Car> getAllAdmin()
     {
-        return carDao.getAll();
+        List<Car> list = carDao.getAll();
+        Collections.reverse(list);
+        return list;
     }
 
     @Override
@@ -68,6 +71,9 @@ public class CarServiceImpl implements CarService
                 }
             }
         }
+
+        Collections.reverse(res);
+
         return res;
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ClientService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,7 +35,9 @@ public class ClientServiceImpl implements ClientService
 
     public List<Client> getAll()
     {
-        return clientDao.getAll();
+        List<Client> list = clientDao.getAll();
+        Collections.reverse(list);
+        return list;
     }
 
     public void add(Client client)

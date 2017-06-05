@@ -27,16 +27,21 @@ public class Order
     @Column(name = "returning_date")
     private Date returningDate;
 
+
+    @Column
+    private double price;
+
     public Order()
     {
     }
 
-    public Order(Client client, Car car, Date date, Date returningDate)
+    public Order(Client client, Car car, Date date, Date returningDate, double price)
     {
         this.client = client;
         this.car = car;
         this.date = date;
         this.returningDate = returningDate;
+        this.price = price;
     }
 
     public Integer getId()
@@ -87,5 +92,15 @@ public class Order
     public void setReturningDate(Date returningDate)
     {
         this.returningDate = returningDate;
+    }
+
+    public double getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
     }
 }

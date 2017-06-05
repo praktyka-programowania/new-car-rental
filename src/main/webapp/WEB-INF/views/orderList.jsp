@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/views/common/header.jspf"%>
 
 <div class="page-header">
-    <h1>Admin page:</h1>
+    <h1>Orders:</h1>
 </div>
 <div class="container">
     <table style="float: right;">
@@ -17,29 +17,21 @@
     <table class="table table-striped">
         <thead>
         <th>ID:</th>
-        <th>Company:</th>
-        <th>Model:</th>
-        <th>Year:</th>
+        <th>Client:</th>
+        <th>Car:</th>
+        <th>Date:</th>
+        <th>Returning date:</th>
         <th>Price:</th>
-        <th></th>
-        <th></th>
-        <th></th>
         </thead>
         <tbody>
-        <c:forEach var="car" items="${list}">
-            <tr style="${car.enabled == false ? 'color:#ff0000;' : ''}">
-                <td>${car.id}</td>
-                <td>${car.company}</td>
-                <td>${car.model}</td>
-                <td>${car.year}</td>
-                <td>${car.price}</td>
-                <td><a class="btn btn-default ${car.enabled == true ? 'disabled' : ''}" href="/admin/enable/${car.id}">Enable</a></td>
-                <td>
-                    <a href="/admin/update/${car.id}" class="glyphicon glyphicon-pencil"></a>
-                </td>
-                <td>
-                    <a href="/admin/delete/${car.id}" class="glyphicon glyphicon-remove"></a>
-                </td>
+        <c:forEach var="order" items="${list}">
+            <tr>
+                <td>${order.id}</td>
+                <td>${order.client.firstName} ${order.client.lastName}</td>
+                <td>${order.client.car.company} ${order.client.car.model} ${order.client.car.year}</td>
+                <td>${order.date}</td>
+                <td>${order.returningDate}</td>
+                <td>${order.price}</td>
             </tr>
         </c:forEach>
         </tbody>

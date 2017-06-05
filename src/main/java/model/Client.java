@@ -39,7 +39,7 @@ public class Client
     private String username;
 
     @Column
-    @Length(min = 3, max = 50, message = "Should be between 3 and 50 characters")
+    @Length(min = 8, max = 255, message = "Should contain at least 8 characters")
     private String password;
 
     @OneToOne

@@ -38,9 +38,6 @@ public class Car
     @Column
     private boolean enabled;
 
-    @Column(name = "returning_date")
-    private Date returningDate;
-
     public Integer getId()
     {
         return id;
@@ -97,16 +94,6 @@ public class Car
     public void setEnabled(boolean enabled)
     {
         this.enabled = enabled;
-    }
-
-    public Date getReturningDate()
-    {
-        return returningDate;
-    }
-
-    public void setReturningDate(Date returningDate)
-    {
-        this.returningDate = returningDate;
     }
 
     public double getPrice()

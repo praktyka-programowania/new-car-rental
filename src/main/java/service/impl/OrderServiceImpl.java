@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.OrderService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +20,9 @@ public class OrderServiceImpl implements OrderService
     @Override
     public List<Order> getAll()
     {
-        return orderDao.getAll();
+        List<Order> list = orderDao.getAll();
+        Collections.reverse(list);
+        return list;
     }
 
     @Override

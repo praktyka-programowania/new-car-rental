@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import service.CarService;
 import service.ClientService;
+import service.OrderService;
 
 import javax.validation.Valid;
 
@@ -22,6 +23,9 @@ public class AdminController
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String adminPage(Model model)
@@ -79,7 +83,6 @@ public class AdminController
         c.setYear(car.getYear());
         c.setPrice(car.getPrice());
         c.setEnabled(true);
-        c.setReturningDate(car.getReturningDate());
         carService.update(c);
         return "redirect:/admin/";
     }
@@ -100,5 +103,24 @@ public class AdminController
     {
         model.addAttribute("list", clientService.getAll());
         return "clientList";
+    }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public String orders(Model model)
+    {
+        model.addAttribute("list", orderService.getAll());
+        return "orderList";
+    }
+
+    @RequestMapping(value = "/enable/{id}", method = RequestMethod.GET)
+    public String orders(@PathVariable int id)
+    {
+        Car car = carService.get(id);
+
+
+        car.setEnabled(true);
+        carService.update(car);
+
+        return "redirect:/admin/";
     }
 }
