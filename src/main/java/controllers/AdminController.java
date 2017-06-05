@@ -9,12 +9,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import service.CarService;
 import service.ClientService;
 import service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/admin")
@@ -44,7 +49,7 @@ public class AdminController
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCar(@Valid Car car, BindingResult result, Model model)
+    public String addCar(@Valid Car car, BindingResult result, Model model, HttpServletRequest request) throws IOException
     {
         if (result.hasErrors())
         {
@@ -54,6 +59,15 @@ public class AdminController
         car.setEnabled(true);
 
         carService.add(car);
+
+
+        MultipartFile img = car.getImage();
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        String path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\cars\\" + car.getId() + ".png").toString();
+        if (img != null && !img.isEmpty())
+        {
+            img.transferTo(new java.io.File(path));
+        }
 
         return "redirect:/admin/";
     }
@@ -70,7 +84,7 @@ public class AdminController
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String updateCar(@PathVariable int id, @Valid Car car, BindingResult result, Model model)
+    public String updateCar(@PathVariable int id, @Valid Car car, BindingResult result, Model model, HttpServletRequest request) throws IOException
     {
         if (result.hasErrors())
         {
@@ -84,18 +98,36 @@ public class AdminController
         c.setModel(car.getModel());
         c.setYear(car.getYear());
         c.setPrice(car.getPrice());
-        c.setEnabled(true);
         carService.update(c);
+
+        MultipartFile img = car.getImage();
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        String path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\cars\\" + car.getId() + ".png").toString();
+        if (img != null && !img.isEmpty())
+        {
+            java.io.File file = new java.io.File(path);
+            if (file.exists())
+                file.delete();
+            img.transferTo(file);
+        }
+
         return "redirect:/admin/";
     }
 
 
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteCar(@PathVariable int id)
+    public String deleteCar(@PathVariable int id, HttpServletRequest request)
     {
         Car car = carService.get(id);
         carService.delete(car);
+
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        String path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\cars\\" + car.getId() + ".png").toString();
+        java.io.File file = new java.io.File(path);
+        if (file.exists())
+            file.delete();
+
         return "redirect:/admin/";
     }
 

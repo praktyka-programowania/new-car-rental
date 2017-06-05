@@ -8,7 +8,7 @@
 
 <div class="col-md-4">
 
-    <form:form commandName="car" method="post">
+    <form:form commandName="car" method="post" enctype="multipart/form-data">
 
 
         <fieldset class="form-group">
@@ -35,6 +35,12 @@
             <form:label path="price">Price:</form:label>
             <form:input path="price" type="number" required="required" cssClass="form-control inputWithoutSpaces"/>
             <form:errors path="price" cssClass="text-danger"/>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <form:label path="image">Upload image: </form:label>
+            <form:input path="image" type="file"/>
+            <form:errors path="image" cssClass="text-danger"/>
         </fieldset>
 
         <input type="submit" value="Submit" class="btn btn-success">

@@ -2,11 +2,11 @@ package model;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.Date;
 
 @Entity
 @Table(name = "cars")
@@ -37,6 +37,19 @@ public class Car
 
     @Column
     private boolean enabled;
+
+    @Transient
+    private MultipartFile image;
+
+    public MultipartFile getImage()
+    {
+        return image;
+    }
+
+    public void setImage(MultipartFile image)
+    {
+        this.image = image;
+    }
 
     public Integer getId()
     {

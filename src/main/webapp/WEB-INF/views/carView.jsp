@@ -79,7 +79,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <img src="/resources/books/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="250" height="250"/>
+        <img src="/resources/cars/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="250" height="250"/>
     </div>
     <div class="col-md-8">
         <ul style="list-style-type: none;">
