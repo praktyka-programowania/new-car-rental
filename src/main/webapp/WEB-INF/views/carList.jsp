@@ -9,8 +9,8 @@
     <c:forEach var="car" items="${list}">
 
         <div class="row" style="height: 150px; margin-top: 5px; background-color: #e9eedb;">
-            <div class="col-md-2" style="padding-left: 0px;">
-                <img src="/resources/cars/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="150" height="150"/>
+            <div class="col-md-3" style="padding-left: 0px;">
+                <img src="/resources/cars/${car.id}.png" onerror="this.src='/resources/cars/default.png'" alt="Car: ${car.id}" width="200" height="150"/>
             </div>
             <div class="col-md-4">
                 <h3>${car.company}</h3>
